@@ -1,33 +1,32 @@
-'use strict';
-
 /**
  * Plays random video.
  * @param {Array} videoArray - Contains string path of videos
  * @param {HTMLSourceElement} sourceElement
  * @param {HTMLVideoElement} videoElement
- * @param {string} current - String filename of current video playing
+ * @param {string} justPlayed - Filename of video just played
+ * @returns {string} randomVideo - The new current video filename
  */
-export function playRandomVideo(videoArray, sourceElement, videoElement, current) {
-	const randomVideo = chooseRandomVideoFileButNotCurrentPlaying(videoArray, current);
+export function playRandomVideo(videoArray, sourceElement, videoElement, justPlayed) {
+	const randomVideo = chooseRandomVideoFileButNotTheJustPlayed(videoArray, justPlayed);
 	sourceElement.src = randomVideo;
 	videoElement.load();
 	videoElement.play();
-	current = randomVideo;
+	return randomVideo;
 }
 
 /**
- * Chooses random video file name, but not the current playing.
+ * Chooses random video file name, but not the just played.
  * @param {Array} videoArray - Contains strings with path of each video
- * @param {string} current - String filename of current video playing
+ * @param {string} justPlayed - Filename of video just played
+ * @returns {string} randomVideoFile - Chosen filename of chosen video
  */
-function chooseRandomVideoFileButNotCurrentPlaying(videoArray, current) {
+function chooseRandomVideoFileButNotTheJustPlayed(videoArray, justPlayed) {
 
 	let randomVideoFile;
 	do {
 		const randomIndex = Math.floor(Math.random() * videoArray.length);
 		randomVideoFile = videoArray[randomIndex];
-	} while (randomVideoFile === current);
+	} while (randomVideoFile === justPlayed);
 
 	return randomVideoFile;
 }
-

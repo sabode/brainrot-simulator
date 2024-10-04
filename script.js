@@ -10,7 +10,7 @@ const sourceEl = document.querySelector('source');
 const dialog = document.querySelector('dialog');
 const dialogBtn = document.querySelector('button');
 
-let current = '';
+let justPlayed = '';
 
 /**
  * User needs to interact with the document first before playing...
@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 dialogBtn.addEventListener('click', () => {
 	dialog.close();
-	playRandomVideo(videos, sourceEl, videoEl, current);
+	justPlayed = playRandomVideo(videos, sourceEl, videoEl, justPlayed);
 });
 
 /**
  * Start random loop
  */
 videoEl.addEventListener('ended', () => {
-	playRandomVideo(videos, sourceEl, videoEl, current);
+	justPlayed = playRandomVideo(videos, sourceEl, videoEl, justPlayed);
 });
