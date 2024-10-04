@@ -1,4 +1,5 @@
 import { playRandomVideo } from "./video.js";
+// TODO: File picker for videos
 // TODO: Multiple video containers: the one played shouldn't be selected for another container
 
 // Replace with folder reading
