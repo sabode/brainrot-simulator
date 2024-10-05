@@ -7,10 +7,7 @@ import { playRandomVideo } from "./video.js";
  * + Adding video paths to an array for ease of processing.
  */
 const videoObject = import.meta.glob('/public/*.mp4');
-const videos = [];
-for (const filepath in videoObject) {
-	videos.push(filepath);
-}
+const videos = Object.keys(videoObject);
 
 const videoEl = document.querySelector('video');
 const sourceEl = document.querySelector('source');
