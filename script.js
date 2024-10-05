@@ -1,9 +1,16 @@
 import { playRandomVideo } from "./video.js";
-// TODO: File picker for videos
 // TODO: Multiple video containers: the one played shouldn't be selected for another container
+// TODO: Review Vite static asset importing (if optimization is needed)
 
-// Replace with folder reading
-const videos = ['./video1.mp4', './video2.mp4', './video3.mp4', './video4.mp4'];
+/**
+ * Vite static asset importing
+ * + Adding video paths to an array for ease of processing.
+ */
+const videoObject = import.meta.glob('/public/*.mp4');
+const videos = [];
+for (const filepath in videoObject) {
+	videos.push(filepath);
+}
 
 const videoEl = document.querySelector('video');
 const sourceEl = document.querySelector('source');
@@ -14,7 +21,7 @@ const dialogBtn = document.querySelector('button');
 let justPlayed = '';
 
 /**
- * User needs to interact with the document first before playing...
+ * User needs to interact with the document first before playing videos...
  */
 document.addEventListener('DOMContentLoaded', () => {
 	dialog.showModal();
